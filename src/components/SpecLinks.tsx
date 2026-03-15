@@ -124,25 +124,6 @@ export default function SpecLinks() {
           </div>
         </div>
       </div>
-
-      <div className="flex flex-wrap gap-3 pt-2">
-        <a
-          href="https://github.com/opreturnsocial/ors"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-muted-foreground hover:text-[#f7931a] flex items-center gap-1 transition-colors"
-        >
-          <ExternalLink className="h-3.5 w-3.5" /> github.com/opreturnsocial/ors
-        </a>
-        <a
-          href="https://github.com/opreturnsocial/ork"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-muted-foreground hover:text-[#f7931a] flex items-center gap-1 transition-colors"
-        >
-          <ExternalLink className="h-3.5 w-3.5" /> github.com/opreturnsocial/ork
-        </a>
-      </div>
     </section>
   );
 }
