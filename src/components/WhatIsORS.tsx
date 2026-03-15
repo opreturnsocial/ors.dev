@@ -39,8 +39,8 @@ export default function WhatIsORS() {
             <span className="text-muted-foreground text-sm">pronounced <em>"oars"</em> - like rowing oars</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-mono text-sm border border-border px-2 py-0.5 w-48 text-center inline-block">ORSK Kind Registry</span>
-            <span className="text-muted-foreground text-sm">pronounced <em>"Orsk"</em> - like the Russian city</span>
+            <span className="font-mono text-sm border border-border px-2 py-0.5 w-48 text-center inline-block">ORK Kind Registry</span>
+            <span className="text-muted-foreground text-sm">pronounced <em>"orc"</em> - like the fantasy creature</span>
           </div>
         </div>
       </div>

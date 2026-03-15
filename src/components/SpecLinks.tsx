@@ -31,46 +31,46 @@ const specs: SpecLink[] = [
     tag: 'ORS',
   },
   {
-    id: 'ORSK-01',
+    id: 'ORK-01',
     title: 'TEXT_NOTE',
     description: 'Plain text post (kind 0x01)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-01.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-01.md',
+    tag: 'ORK',
   },
   {
-    id: 'ORSK-02',
+    id: 'ORK-02',
     title: 'PROFILE_UPDATE',
     description: 'Profile metadata update (kind 0x02)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-02.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-02.md',
+    tag: 'ORK',
   },
   {
-    id: 'ORSK-03',
+    id: 'ORK-03',
     title: 'TEXT_REPLY',
     description: 'Reply to a post by txid (kind 0x03)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-03.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-03.md',
+    tag: 'ORK',
   },
   {
-    id: 'ORSK-04',
+    id: 'ORK-04',
     title: 'REPOST',
     description: 'Repost another ORS post (kind 0x04)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-04.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-04.md',
+    tag: 'ORK',
   },
   {
-    id: 'ORSK-05',
+    id: 'ORK-05',
     title: 'QUOTE_REPOST',
     description: 'Quote repost with commentary (kind 0x05)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-05.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-05.md',
+    tag: 'ORK',
   },
   {
-    id: 'ORSK-06',
+    id: 'ORK-06',
     title: 'FOLLOW',
     description: 'Follow/unfollow a pubkey (kind 0x06)',
-    href: 'https://github.com/opreturnsocial/orsk/blob/master/ORSK-06.md',
-    tag: 'ORSK',
+    href: 'https://github.com/opreturnsocial/ork/blob/master/ORK-06.md',
+    tag: 'ORK',
   },
 ];
 
@@ -121,12 +121,12 @@ export default function SpecLinks() {
           <ExternalLink className="h-3.5 w-3.5" /> github.com/opreturnsocial/ors
         </a>
         <a
-          href="https://github.com/opreturnsocial/orsk"
+          href="https://github.com/opreturnsocial/ork"
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm text-muted-foreground hover:text-[#f7931a] flex items-center gap-1 transition-colors"
         >
-          <ExternalLink className="h-3.5 w-3.5" /> github.com/opreturnsocial/orsk
+          <ExternalLink className="h-3.5 w-3.5" /> github.com/opreturnsocial/ork
         </a>
       </div>
     </section>
