@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Copy, Check, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
+import { Copy, Check, AlertCircle, Loader2, Plus, X } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -141,17 +141,38 @@ function DecodedResult({ post }: { post: ParsedPost | ParsedV1Post }) {
 }
 
 function DecodeTab() {
-  const [hex, setHex] = useState('');
-  const [hex1, setHex1] = useState('');
+  const [chunks, setChunks] = useState<string[]>(['']);
   const [result, setResult] = useState<ParsedPost | ParsedV1Post | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showChunk1, setShowChunk1] = useState(false);
+  const [loadedMeta, setLoadedMeta] = useState<{ txid: string; block: number; version: 'v0' | 'v1' } | null>(null);
+
+  const setChunk = (i: number, val: string) => {
+    setChunks(prev => prev.map((c, j) => j === i ? val : c));
+    setResult(null);
+    setError('');
+  };
+
+  const addChunk = () => setChunks(prev => [...prev, '']);
+
+  const removeChunk = (i: number) => {
+    if (chunks.length <= 1) return;
+    setChunks(prev => prev.filter((_, j) => j !== i));
+    setResult(null);
+    setError('');
+  };
+
+  const clear = () => {
+    setChunks(['']);
+    setResult(null);
+    setError('');
+    setLoadedMeta(null);
+  };
 
   const decode = useCallback(() => {
     setError('');
     setResult(null);
-    const h = hex.trim();
+    const h = chunks[0].trim();
     if (!h) { setError('Enter hex data to decode'); return; }
 
     const ver = detectVersion(h);
@@ -164,41 +185,34 @@ function DecodeTab() {
       const chunk0 = parseV1Chunk(h);
       if (!chunk0) { setError('Failed to parse v1 chunk 0'); return; }
 
-      if (!chunk0.totalChunks || chunk0.totalChunks <= 1) {
-        setError('v1 chunk 0 indicates only 1 chunk but single-chunk v1 is not standard');
+      if (chunk0.totalChunks && chunk0.totalChunks > chunks.length) {
+        setError(`This post needs ${chunk0.totalChunks} chunks. Add ${chunk0.totalChunks - chunks.length} more chunk input(s) below.`);
         return;
       }
 
-      // Multi-chunk
-      if (!hex1.trim()) {
-        setShowChunk1(true);
-        setError('This is a multi-chunk v1 post. Please provide chunk 1 hex below.');
-        return;
-      }
+      const parsed = chunks.map((c, i) => i === 0 ? chunk0 : parseV1Chunk(c.trim()));
+      const failed = parsed.findIndex(p => !p);
+      if (failed !== -1) { setError(`Failed to parse chunk ${failed}`); return; }
 
-      const chunk1 = parseV1Chunk(hex1.trim());
-      if (!chunk1) { setError('Failed to parse v1 chunk 1'); return; }
-
-      const r = assembleV1Body([chunk0.bodySlice, chunk1.bodySlice]);
+      const r = assembleV1Body(parsed.map(p => p!.bodySlice));
       if (!r.ok) { setError(r.error); return; }
       setResult(r.post);
     } else {
       setError('Not a valid ORS payload (check magic bytes ORS = 0x4f5253)');
     }
-  }, [hex, hex1]);
+  }, [chunks]);
 
   const loadFirstPost = useCallback(async () => {
     setLoading(true);
     setError('');
     setResult(null);
+    setLoadedMeta(null);
     try {
       const [s0, s1] = await Promise.all([
         fetchOpReturn(CHUNK0_TXID),
         fetchOpReturn(CHUNK1_TXID),
       ]);
-      setHex(s0);
-      setHex1(s1);
-      setShowChunk1(true);
+      setChunks([s0, s1]);
 
       const chunk0 = parseV1Chunk(s0);
       const chunk1 = parseV1Chunk(s1);
@@ -206,6 +220,7 @@ function DecodeTab() {
       const r = assembleV1Body([chunk0.bodySlice, chunk1.bodySlice]);
       if (!r.ok) { setError(r.error); return; }
       setResult(r.post);
+      setLoadedMeta({ txid: CHUNK0_TXID, block: 940000, version: 'v1' });
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to fetch');
     } finally {
@@ -217,14 +232,14 @@ function DecodeTab() {
     setLoading(true);
     setError('');
     setResult(null);
-    setShowChunk1(false);
-    setHex1('');
+    setLoadedMeta(null);
     try {
       const s0 = await fetchOpReturn(V0_TXID);
-      setHex(s0);
+      setChunks([s0]);
       const r = parseORSPayload(s0);
       if (!r.ok) { setError(r.error); return; }
       setResult(r.post);
+      setLoadedMeta({ txid: V0_TXID, block: 940667, version: 'v0' });
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to fetch');
     } finally {
@@ -236,7 +251,7 @@ function DecodeTab() {
     <div className="space-y-4">
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium">OP_RETURN hex (chunk 0)</label>
+          <label className="text-sm font-medium">OP_RETURN hex</label>
           <div className="flex gap-2">
             <Button
               variant="outline"
@@ -256,36 +271,58 @@ function DecodeTab() {
               {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin mr-1" /> : null}
               Load first v1 post
             </Button>
+            <Button variant="outline" size="sm" onClick={clear} disabled={loading}>
+              Clear
+            </Button>
           </div>
         </div>
-        <Textarea
-          placeholder="Paste OP_RETURN hex here (with or without 6a prefix)..."
-          value={hex}
-          onChange={e => { setHex(e.target.value); setResult(null); setError(''); }}
-          className="font-mono text-xs min-h-[80px]"
-        />
+        {loadedMeta && (
+          <div className="flex flex-col items-start gap-2 text-xs text-muted-foreground font-mono flex-wrap">
+            <span className="text-[#f7931a]">{loadedMeta.version}</span>
+            <span>txid: {loadedMeta.txid}</span>
+            <span>block {loadedMeta.block.toLocaleString()}</span>
+            <a
+              href={`https://mempool.space/tx/${loadedMeta.txid}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#f7931a] hover:underline"
+            >
+              view on mempool.space ↗
+            </a>
+          </div>
+        )}
       </div>
 
-      {showChunk1 && (
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Chunk 1 hex (for v1 multi-chunk posts)</label>
+      {chunks.map((val, i) => (
+        <div key={i} className="space-y-1.5">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-medium text-muted-foreground">
+              chunk {i} {i === 0 ? '(root)' : ''}
+            </label>
+            {i > 0 && (
+              <button
+                className="text-xs text-muted-foreground hover:text-destructive flex items-center gap-0.5 transition-colors"
+                onClick={() => removeChunk(i)}
+              >
+                <X className="h-3 w-3" /> remove
+              </button>
+            )}
+          </div>
           <Textarea
-            placeholder="Paste chunk 1 OP_RETURN hex..."
-            value={hex1}
-            onChange={e => { setHex1(e.target.value); setResult(null); setError(''); }}
+            placeholder={`Paste chunk ${i} OP_RETURN hex...`}
+            value={val}
+            onChange={e => setChunk(i, e.target.value)}
             className="font-mono text-xs min-h-[80px]"
           />
         </div>
-      )}
+      ))}
 
-      {!showChunk1 && (
-        <button
-          className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
-          onClick={() => setShowChunk1(true)}
-        >
-          <ChevronDown className="h-3 w-3" /> Add chunk 1 (for v1 posts)
-        </button>
-      )}
+      <button
+        className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
+        onClick={addChunk}
+      >
+        <Plus className="h-3 w-3" /> Add chunk
+      </button>
 
       <Button onClick={decode} className="bg-[#f7931a] hover:bg-[#e8851a] text-white">
         Decode

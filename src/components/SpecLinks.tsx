@@ -111,6 +111,20 @@ export default function SpecLinks() {
         ))}
       </div>
 
+      <div className="p-6 border-l-2 border-[#f7931a] border border-border bg-muted/30 rounded-none space-y-4">
+        <h3 className="font-semibold text-lg">Pronunciation Guide</h3>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-sm bg-[#f7931a] text-white px-2 py-0.5 text-center inline-block">ORS</span>
+            <span className="text-muted-foreground text-sm">Protocol Specs - pronounced <em>"oars"</em> - like rowing oars</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-sm border border-border px-2 py-0.5 text-center inline-block">ORK</span>
+            <span className="text-muted-foreground text-sm">Kind Registry - pronounced <em>"orc"</em> - like the fantasy creature</span>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-wrap gap-3 pt-2">
         <a
           href="https://github.com/opreturnsocial/ors"

@@ -45,7 +45,7 @@ export default function HowItWorks() {
                 Entire post in one OP_RETURN output.
               </p>
               <div className="font-mono text-xs bg-background border border-border rounded-none p-3 overflow-x-auto">
-                <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">\x00</span>{' '}
+                <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">0x00</span>{' '}
                 <span className="text-green-500">pubkey[32]</span>{' '}
                 <span className="text-purple-400">sig[64]</span>{' '}
                 <span className="text-yellow-500">kind[1]</span>{' '}
@@ -62,21 +62,30 @@ export default function HowItWorks() {
             </div>
             <div className="p-4 space-y-3">
               <p className="text-sm text-muted-foreground">
-                Post split across multiple 80-byte OP_RETURN outputs across multiple transactions. Each chunk relays through standard bitcoin mempool.
+                Post split across multiple transactions with single 80-byte OP_RETURN outputs.
               </p>
               <div className="font-mono text-xs bg-background border border-border rounded-none p-3 space-y-1 overflow-x-auto">
                 <div>
-                  <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">\x01</span>{' '}
-                  <span className="text-muted-foreground">\x00</span>{' '}
-                  <span className="text-muted-foreground">N</span>{' '}
-                  <span className="text-foreground/70">body[0:74]</span>{' '}
+                  <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">0x01</span>{' '}
+                  <span className="text-muted-foreground">0x00</span>{' '}
+                  <span className="text-red-400">0x02</span>{' '}
+                  <span className="text-green-500">pubkey[32]</span>{' '}
+                  <span className="text-purple-400">sig[0..42]</span>{' '}
                   <span className="text-muted-foreground/60">(chunk 0)</span>
                 </div>
                 <div>
-                  <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">\x01</span>{' '}
-                  <span className="text-muted-foreground">\x01</span>{' '}
-                  <span className="text-foreground/70">body[74:149]</span>{' '}
+                  <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">0x01</span>{' '}
+                  <span className="text-muted-foreground">0x01</span>{' '}
+                  <span className="text-purple-400">sig[42..64]</span>{' '}
+                  <span className="text-yellow-500">kind[1]</span>{' '}
+                  <span className="text-pink-400">content[0..52]</span>{' '}
                   <span className="text-muted-foreground/60">(chunk 1)</span>
+                </div>
+                <div>
+                  <span className="text-[#f7931a]">ORS</span><span className="text-blue-400">0x01</span>{' '}
+                  <span className="text-muted-foreground">0x02</span>{' '}
+                  <span className="text-pink-400">content[52..M]</span>{' '}
+                  <span className="text-muted-foreground/60">(chunk 2)</span>
                 </div>
               </div>
             </div>

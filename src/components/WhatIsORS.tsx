@@ -31,19 +31,7 @@ export default function WhatIsORS() {
         ))}
       </div>
 
-      <div className="p-6 border-l-2 border-[#f7931a] border border-border bg-muted/30 rounded-none space-y-4">
-        <h3 className="font-semibold text-lg">Pronunciation Guide</h3>
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-sm bg-[#f7931a] text-white px-2 py-0.5 w-48 text-center inline-block">ORS Protocol Specs</span>
-            <span className="text-muted-foreground text-sm">pronounced <em>"oars"</em> - like rowing oars</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-sm border border-border px-2 py-0.5 w-48 text-center inline-block">ORK Kind Registry</span>
-            <span className="text-muted-foreground text-sm">pronounced <em>"orc"</em> - like the fantasy creature</span>
-          </div>
-        </div>
-      </div>
+
     </section>
   );
 }
