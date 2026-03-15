@@ -7,6 +7,9 @@ import HowItWorks from '@/components/HowItWorks';
 import EncoderDecoder from '@/components/EncoderDecoder';
 import ReferenceClients from '@/components/ReferenceClients';
 import Architecture from '@/components/Architecture';
+import WebOfTrust from '@/components/WebOfTrust';
+import SpamResistance from '@/components/SpamResistance';
+import BringYourOwnClient from '@/components/BringYourOwnClient';
 import SpecLinks from '@/components/SpecLinks';
 import Community from '@/components/Community';
 import Footer from '@/components/Footer';
@@ -59,6 +62,9 @@ export default function App() {
         <ReferenceClients />
         <SpecLinks />
         <Architecture />
+        <WebOfTrust />
+        <SpamResistance />
+        <BringYourOwnClient />
         <Community />
       </main>
 
