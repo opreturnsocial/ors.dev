@@ -33,7 +33,7 @@ export function BitcoinBlocksBackground() {
 
     const createBlocks = () => {
       const blocks: Block[] = []
-      const numBlocks = 25
+      const numBlocks = window.innerWidth < 768 ? 12 : 25
 
       for (let i = 0; i < numBlocks; i++) {
         blocks.push({

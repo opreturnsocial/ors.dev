@@ -23,7 +23,7 @@ export default function Hero() {
         </p>
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 px-4">
           <a
             href="https://github.com/opreturnsocial/ors/blob/master/ORS-01.md"
             target="_blank"

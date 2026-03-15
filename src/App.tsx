@@ -27,7 +27,7 @@ export default function App() {
   }, [dark]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
