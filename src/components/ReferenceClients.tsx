@@ -46,7 +46,7 @@ export default function ReferenceClients() {
               <h3 className="font-semibold text-lg">ors.dev</h3>
             </div>
             <p className="text-sm text-muted-foreground">
-              Simple ORS encoder/decoder. Inspect, build, and verify ORS payloads in-browser.
+              Simple ORS encoder/decoder. Inspect, build, and verify ORS payloads.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
