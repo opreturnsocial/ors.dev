@@ -6,10 +6,6 @@ export default function Hero() {
       <BitcoinBlocksBackground/>
     
     <section className="relative text-center space-y-6 -mx-4 px-4 py-20 pb-0 md:py-28 rounded-xl overflow-hidden bg-dots">
-      
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/60 pointer-events-none" />
-
       <div className="relative space-y-6">
         {/* Main heading */}
         <h1 className="font-mono text-3xl md:text-7xl leading-none">
