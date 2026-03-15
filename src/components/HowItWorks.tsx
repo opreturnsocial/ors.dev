@@ -89,7 +89,7 @@ export default function HowItWorks() {
       {/* Steps */}
       <div className="grid md:grid-cols-4 gap-4">
         {[
-          { step: '01', title: 'Write', desc: 'Compose your message (up to 280 bytes)' },
+          { step: '01', title: 'Write', desc: 'Compose your message' },
           { step: '02', title: 'Sign', desc: 'Sign the payload with your Schnorr private key (BIP-340)' },
           { step: '03', title: 'Embed', desc: 'Package as OP_RETURN output data in a bitcoin transaction' },
           { step: '04', title: 'Broadcast', desc: 'Mine into a block - immutable on the bitcoin blockchain' },
@@ -139,7 +139,7 @@ export default function HowItWorks() {
                 <span className="text-green-500 underline decoration-dotted cursor-help" title="32-byte x-only Schnorr public key (BIP-340)">pubkey[32]</span>
                 <span className="text-purple-400 underline decoration-dotted cursor-help" title="64-byte Schnorr signature over sha256(ORS||version||pubkey||kind||content)">sig[64]</span>
                 <span className="text-yellow-500 underline decoration-dotted cursor-help" title="1-byte post kind (e.g. 0x01 = TEXT_NOTE)">kind[1]</span>
-                <span className="text-pink-400 underline decoration-dotted cursor-help" title="UTF-8 encoded post content, up to 280 bytes">content</span>
+                <span className="text-pink-400 underline decoration-dotted cursor-help" title="UTF-8 encoded post content">content</span>
               </div>
               {showV0Example && <V0Example />}
             </div>
