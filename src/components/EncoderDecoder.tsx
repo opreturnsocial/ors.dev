@@ -250,7 +250,7 @@ function DecodeTab() {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between">
           <label className="text-sm font-medium">OP_RETURN hex</label>
           <div className="flex gap-2">
             <Button

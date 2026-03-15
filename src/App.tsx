@@ -10,6 +10,7 @@ import Architecture from '@/components/Architecture';
 import WebOfTrust from '@/components/WebOfTrust';
 import SpamResistance from '@/components/SpamResistance';
 import BringYourOwnClient from '@/components/BringYourOwnClient';
+import NostrCompat from '@/components/NostrCompat';
 import SpecLinks from '@/components/SpecLinks';
 import Community from '@/components/Community';
 import Footer from '@/components/Footer';
@@ -65,6 +66,7 @@ export default function App() {
         <WebOfTrust />
         <SpamResistance />
         <BringYourOwnClient />
+        <NostrCompat />
         <Community />
       </main>
 
