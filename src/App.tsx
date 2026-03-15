@@ -6,6 +6,7 @@ import WhatIsORS from '@/components/WhatIsORS';
 import HowItWorks from '@/components/HowItWorks';
 import EncoderDecoder from '@/components/EncoderDecoder';
 import ReferenceClients from '@/components/ReferenceClients';
+import Architecture from '@/components/Architecture';
 import SpecLinks from '@/components/SpecLinks';
 import Community from '@/components/Community';
 import Footer from '@/components/Footer';
@@ -57,6 +58,7 @@ export default function App() {
         <div id="tools"><EncoderDecoder /></div>
         <ReferenceClients />
         <SpecLinks />
+        <Architecture />
         <Community />
       </main>
 

@@ -31,6 +31,23 @@ export default function WhatIsORS() {
         ))}
       </div>
 
+      {/* Bitcoin-alignment callout */}
+      <div className="border-l-4 border-[#f7931a] bg-[#f7931a]/5 p-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <h3 className="font-semibold text-sm tracking-wide uppercase text-[#f7931a]">Prunable Outputs</h3>
+            <p className="text-sm text-muted-foreground">
+              OP_RETURN outputs are provably unspendable - full nodes can prune them from the UTXO set. ORS posts don't bloat the set that every node must keep in RAM.
+            </p>
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-semibold text-sm tracking-wide uppercase text-[#f7931a]">Miner Fees</h3>
+            <p className="text-sm text-muted-foreground">
+              Every ORS post pays fees to miners. ORS activity adds economic demand for block space - a buyer of last resort when mempool is quiet.
+            </p>
+          </div>
+        </div>
+      </div>
 
     </section>
   );
