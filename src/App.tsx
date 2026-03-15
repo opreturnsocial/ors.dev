@@ -49,8 +49,8 @@ export default function App() {
         </div>
       </header>
 
+      <Hero />
       <main className="max-w-6xl mx-auto px-4 py-16 space-y-24">
-        <Hero />
         <WhatIsORS />
         <HowItWorks />
         <div id="tools"><EncoderDecoder /></div>
