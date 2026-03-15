@@ -35,6 +35,7 @@ export default function App() {
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-4">
               <a href="#how-it-works" className="font-mono text-xs text-muted-foreground hover:text-foreground tracking-widest transition-colors">HOW IT WORKS</a>
+              <span className="text-border/60">|</span>
               <a href="#tools" className="font-mono text-xs text-muted-foreground hover:text-foreground tracking-widest transition-colors">TOOLS</a>
             </nav>
             <Button
