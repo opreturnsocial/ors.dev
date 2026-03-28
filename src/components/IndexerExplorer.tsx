@@ -118,7 +118,7 @@ export default function IndexerExplorer() {
               onChange={(e) => setLimit(e.target.value)}
               min={1}
               max={200}
-              className="w-20 rounded-none h-8 text-sm font-mono"
+              className="w-20 rounded-none ml-2 h-8 text-sm font-mono"
             />
           </div>
 
