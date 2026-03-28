@@ -6,6 +6,7 @@ import WhatIsORS from '@/components/WhatIsORS';
 import HowItWorks from '@/components/HowItWorks';
 import EncoderDecoder from '@/components/EncoderDecoder';
 import ReferenceClients from '@/components/ReferenceClients';
+import IndexerExplorer from '@/components/IndexerExplorer';
 import Architecture from '@/components/Architecture';
 import WebOfTrust from '@/components/WebOfTrust';
 import SpamResistance from '@/components/SpamResistance';
@@ -61,6 +62,7 @@ export default function App() {
         <HowItWorks />
         <div id="tools"><EncoderDecoder /></div>
         <ReferenceClients />
+        <IndexerExplorer />
         <SpecLinks />
         <Architecture />
         <WebOfTrust />

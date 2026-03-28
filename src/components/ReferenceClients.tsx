@@ -1,4 +1,4 @@
-import { ExternalLink, EyeIcon } from 'lucide-react';
+import { ExternalLink, EyeIcon } from "lucide-react";
 
 export default function ReferenceClients() {
   return (
@@ -15,7 +15,8 @@ export default function ReferenceClients() {
               <h3 className="font-semibold text-lg">opreturn.social</h3>
             </div>
             <p className="text-sm text-muted-foreground">
-              The first ORS social client with a caching service and lightning facilitator.
+              The first ORS social client with a hybrid (free + paid) UX, a
+              caching service and lightning facilitator.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -46,13 +47,12 @@ export default function ReferenceClients() {
               <h3 className="font-semibold text-lg">ors.dev</h3>
             </div>
             <p className="text-sm text-muted-foreground">
-              Simple ORS encoder/decoder. Inspect, build, and verify ORS payloads.
+              Simple ORS encoder/decoder, and explorer. Inspect, build, and
+              verify ORS payloads, and browse data from the indexers.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <div
-              className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-[#f7931a]/40 hover:border-[#f7931a] hover:bg-[#f7931a]/5 text-sm font-medium transition-colors rounded-none"
-            >
+            <div className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-[#f7931a]/40 hover:border-[#f7931a] hover:bg-[#f7931a]/5 text-sm font-medium transition-colors rounded-none">
               <EyeIcon className="h-3.5 w-3.5 text-[#f7931a]" />
               Viewing
             </div>
