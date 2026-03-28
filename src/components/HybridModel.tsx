@@ -4,7 +4,7 @@ export default function HybridModel() {
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight">Hybrid Model</h2>
         <p className="text-muted-foreground text-lg">
-          not all data needs to go on mainnet.
+          Not all data needs to go on mainnet.
         </p>
       </div>
 

@@ -6,7 +6,7 @@ export default function Architecture() {
           Optional Infrastructure
         </h2>
         <p className="text-muted-foreground text-lg">
-          bitcoin is the source of truth. Everything else is optional.
+          Bitcoin is the source of truth. Everything else is optional.
         </p>
       </div>
 
