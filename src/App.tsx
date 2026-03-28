@@ -8,6 +8,7 @@ import EncoderDecoder from '@/components/EncoderDecoder';
 import ReferenceClients from '@/components/ReferenceClients';
 import IndexerExplorer from '@/components/IndexerExplorer';
 import Architecture from '@/components/Architecture';
+import HybridModel from '@/components/HybridModel';
 import WebOfTrust from '@/components/WebOfTrust';
 import SpamResistance from '@/components/SpamResistance';
 import BringYourOwnClient from '@/components/BringYourOwnClient';
@@ -65,6 +66,7 @@ export default function App() {
         <IndexerExplorer />
         <SpecLinks />
         <Architecture />
+        <HybridModel />
         <WebOfTrust />
         <SpamResistance />
         <BringYourOwnClient />
