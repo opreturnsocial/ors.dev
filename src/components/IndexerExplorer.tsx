@@ -24,7 +24,9 @@ function highlightJson(json: string): string {
 }
 
 export default function IndexerExplorer() {
-  const [network, setNetwork] = useState<"mainnet" | "testnet">("mainnet");
+  const [network, setNetwork] = useState<"mainnet" | "mutinynet" | "testnet4">(
+    "mainnet",
+  );
   const [limit, setLimit] = useState("10");
   const [before, setBefore] = useState("");
   const [result, setResult] = useState<string | null>(null);
@@ -35,7 +37,9 @@ export default function IndexerExplorer() {
     const base =
       network === "mainnet"
         ? "https://indexer.ors.dev"
-        : "https://testnet4.indexer.ors.dev";
+        : network === "mutinynet"
+          ? "https://mutinynet.indexer.ors.dev"
+          : "https://testnet4.indexer.ors.dev";
     const params = new URLSearchParams();
     if (limit) params.set("limit", limit);
     if (before) params.set("before", before);
@@ -86,9 +90,17 @@ export default function IndexerExplorer() {
               </button>
               <button
                 className={
-                  network === "testnet" ? networkActive : networkInactive
+                  network === "mutinynet" ? networkActive : networkInactive
                 }
-                onClick={() => setNetwork("testnet")}
+                onClick={() => setNetwork("mutinynet")}
+              >
+                Mutinynet
+              </button>
+              <button
+                className={
+                  network === "testnet4" ? networkActive : networkInactive
+                }
+                onClick={() => setNetwork("testnet4")}
               >
                 Testnet4
               </button>
