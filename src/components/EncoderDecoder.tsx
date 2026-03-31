@@ -14,7 +14,6 @@ import {
   buildORSPayload,
   buildV1Chunks,
   buildV1SigningBody,
-  hexToOpReturn,
   bytesToHex,
   KIND_TEXT_NOTE,
   type ParsedPost,
@@ -437,7 +436,6 @@ function EncodeTab() {
   const [error, setError] = useState("");
   const [output, setOutput] = useState<{
     dataHex: string;
-    scriptHex: string;
     chunks?: string[];
   } | null>(null);
   const [signing, setSigning] = useState(false);
@@ -472,7 +470,7 @@ function EncodeTab() {
           const sig = signPayload(p, unsigned);
           const payload = buildORSPayload(content, pubkey, sig);
           const dataHex = bytesToHex(payload);
-          setOutput({ dataHex, scriptHex: hexToOpReturn(dataHex) });
+          setOutput({ dataHex });
         } else {
           const signingBody = buildV1SigningBody(
             pubkey,
@@ -489,7 +487,6 @@ function EncodeTab() {
           const chunkHexes = chunks.map(bytesToHex);
           setOutput({
             dataHex: chunkHexes[0],
-            scriptHex: hexToOpReturn(chunkHexes[0]),
             chunks: chunkHexes,
           });
         }
@@ -533,7 +530,7 @@ function EncodeTab() {
           }
           const payload = buildORSPayload(content, pubkey, sigBytes);
           const dataHex = bytesToHex(payload);
-          setOutput({ dataHex, scriptHex: hexToOpReturn(dataHex) });
+          setOutput({ dataHex });
         } else {
           const signingBody = buildV1SigningBody(
             pubkey,
@@ -555,7 +552,6 @@ function EncodeTab() {
           const chunkHexes = chunks.map(bytesToHex);
           setOutput({
             dataHex: chunkHexes[0],
-            scriptHex: hexToOpReturn(chunkHexes[0]),
             chunks: chunkHexes,
           });
         }
